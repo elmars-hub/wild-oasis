@@ -23,7 +23,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
 
   const { errors } = formState;
   const { isCreating, createCabin } = useCreateCabin();
-  const { isEditing, editCabin } = useEditCabin;
+  const { isEditing, editCabin } = useEditCabin();
 
   const isWorking = isCreating || isEditing;
 
