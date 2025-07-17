@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 // import styled from "styled-components";
 
@@ -12,7 +13,7 @@ import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
 import UniqueFormRow from "../../ui/UniqueFormRow";
 
-function CreateCabinForm({ cabinToEdit = {} }) {
+function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { id: editId, ...editValues } = cabinToEdit;
   const isEditSession = Boolean(editId);
 
@@ -33,7 +34,10 @@ function CreateCabinForm({ cabinToEdit = {} }) {
       editCabin(
         { newCabinData: { ...data, image }, id: editId },
         {
-          onSuccess: (data) => reset(data),
+          onSuccess: (data) => {
+            reset();
+            onCloseModal?.();
+          },
         }
       );
     else
@@ -43,7 +47,10 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           image,
         },
         {
-          onSuccess: (data) => reset(data),
+          onSuccess: (data) => {
+            reset();
+            onCloseModal?.();
+          },
         }
       );
   }
@@ -53,7 +60,10 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   // }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit)}
+      type={onCloseModal ? "modal" : "regular"}
+    >
       <UniqueFormRow label="Cabin name" error={errors?.name?.message}>
         <Input
           type="text"
@@ -136,7 +146,11 @@ function CreateCabinForm({ cabinToEdit = {} }) {
 
       <UniqueFormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button
+          variation="secondary"
+          type="reset"
+          onClick={() => onCloseModal?.()}
+        >
           Cancel
         </Button>
         <Button disabled={isWorking}>
