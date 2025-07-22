@@ -18,9 +18,9 @@ const FilterButton = styled.button`
   border: none;
 
   ${(props) =>
-    props.active &&
+    props.$active &&
     css`
-      background-color: var(--color-brand-600);
+      background-color: var(--color-brand-700);
       color: var(--color-brand-50);
     `}
 
