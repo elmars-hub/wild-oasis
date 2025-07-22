@@ -11,6 +11,7 @@ export function useBookings() {
     !filterValue || filterValue === "all"
       ? null
       : { field: "status", value: filterValue };
+  // { field: "totalPrice", value: 5000, method: "gte" };
 
   const {
     isLoading,
