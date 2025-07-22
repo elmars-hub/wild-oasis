@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 import { format, isToday } from "date-fns";
@@ -37,15 +38,15 @@ const Amount = styled.div`
 
 function BookingRow({
   booking: {
-    // id: bookingId,
-    // created_at,
+    id: bookingId,
+    created_at,
     startDate,
     endDate,
     numNights,
-    // numGuest,
+    numGuest,
     totalPrice,
     status,
-    guest: { fullName: guestName, email },
+    guests: { fullName: guestName, email },
     cabins: { name: cabinName },
   },
 }) {

@@ -108,7 +108,7 @@ function BookingDataBox({ booking }) {
     startDate,
     endDate,
     numNights,
-    numGuests,
+    numGuest,
     cabinPrice,
     extrasPrice,
     totalPrice,
@@ -142,7 +142,7 @@ function BookingDataBox({ booking }) {
         <Guest>
           {countryFlag && <Flag src={countryFlag} alt={`Flag of ${country}`} />}
           <p>
-            {guestName} {numGuests > 1 ? `+ ${numGuests - 1} guests` : ""}
+            {guestName} {numGuest > 1 ? `+ ${numGuest - 1} guests` : ""}
           </p>
           <span>&bull;</span>
           <p>{email}</p>

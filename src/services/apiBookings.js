@@ -12,7 +12,7 @@ export async function getBookings() {
       status,
       totalPrice,
       cabins(name),
-      guest(fullName, email)
+      guests(fullName, email)
     `);
 
   if (error) {

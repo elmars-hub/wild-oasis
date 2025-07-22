@@ -26,7 +26,7 @@ function CheckinBooking() {
     id: bookingId,
     guests,
     totalPrice,
-    numGuests,
+    numGuest,
     hasBreakfast,
     numNights,
   } = booking;
