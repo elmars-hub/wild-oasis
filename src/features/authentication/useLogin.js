@@ -17,7 +17,7 @@ export function useLogin() {
     },
 
     onError: (err) => {
-      toast.error("Provided credentials are incorrect");
+      toast.error("Provided credentials are incorrect", err);
     },
   });
 
