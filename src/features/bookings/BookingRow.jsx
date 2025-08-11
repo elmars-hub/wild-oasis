@@ -17,6 +17,9 @@ import {
   HiEye,
   HiTrash,
 } from "react-icons/hi2";
+import { useCheckout } from "../check-in-out/useCheckout";
+import { useDeleteBooking } from "./useDeleteBooking";
+import ConfirmDelete from "../../ui/ConfirmDelete";
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -67,6 +70,9 @@ function BookingRow({
     "checked-out": "silver",
   };
 
+  const { checkout, isCheckingOut } = useCheckout();
+  const { deleteBooking, isDeleting } = useDeleteBooking();
+
   return (
     <Table.Row>
       <Cabin>{cabinName}</Cabin>
@@ -114,7 +120,11 @@ function BookingRow({
             )}
 
             {status === "checked-in" && (
-              <Menus.Button icon={<HiArrowUpOnSquare />}>
+              <Menus.Button
+                icon={<HiArrowUpOnSquare />}
+                onClick={() => checkout(bookingId)}
+                disabled={isCheckingOut}
+              >
                 Check out
               </Menus.Button>
             )}
@@ -125,7 +135,13 @@ function BookingRow({
           </Menus.List>
         </Menus.Menu>
 
-        <Modal.Window name="delete"></Modal.Window>
+        <Modal.Window name="delete">
+          <ConfirmDelete
+            resourceName="booking"
+            onConfirm={() => deleteBooking(bookingId)}
+            disabled={isDeleting}
+          />
+        </Modal.Window>
       </Modal>
     </Table.Row>
   );
